@@ -2,10 +2,15 @@ import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Chapter2 } from './chapter2';
 
-sample();
+//sample();
 
-Chapter2.page80();
+const c2 = new Chapter2();
+// c2.page80();
+c2.page85();
 
+/**
+ * 
+ */
 function sample() {
   const source = of('World').pipe(
     map(x => `Hello ${x}!`)
