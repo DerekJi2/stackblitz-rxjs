@@ -1,5 +1,6 @@
 import { of, timer } from 'rxjs'; 
 import { Observable } from 'rxjs/Observable';
+import { takeUntil, take } from 'rxjs/operators';
 
 export class Chapter2 {
   /**
@@ -12,9 +13,9 @@ export class Chapter2 {
       let data = 1;
       const interval = setInterval(() => {
         observer.next(data++);
-        if (data > 3) {
-          clearInterval(interval);
-        }        
+        // if (data > 3) {
+        //   clearInterval(interval);
+        // }        
       }, 1000);
     };
 
@@ -24,7 +25,9 @@ export class Chapter2 {
       next: item => console.log(item)
     };
 
-    source$.subscribe(theObserver);
+    source$
+    .pipe(take(3))
+    .subscribe(theObserver);
   }
 
   /**
