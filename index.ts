@@ -7,7 +7,8 @@ import { Chapter2 } from './chapter2';
 const c2 = new Chapter2();
 // c2.page80();
 // c2.page85();
-c2.page91();
+// c2.page91();
+c2.page107();
 
 /**
  * 

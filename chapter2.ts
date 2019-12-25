@@ -1,8 +1,42 @@
 import { of, timer } from 'rxjs'; 
 import { Observable } from 'rxjs/Observable';
-import { takeUntil, take } from 'rxjs/operators';
+import { takeUntil, take, tap } from 'rxjs/operators';
 
 export class Chapter2 {
+  /**
+   * 
+   */
+  public page107() {
+    console.log('Page 91 ...');
+
+    const onSubscribe = observer => {
+      let data = 1;
+      const interval = setInterval(() => {
+        observer.next(data++);
+      }, 1000);
+      return {
+        unsubscribe: () => {
+          clearInterval(interval);
+        }
+      };
+    };
+
+    const source$ = new Observable(onSubscribe);
+
+    const theObserver = {
+      next: item => console.log(item)
+    };
+
+    const subscription = source$
+    .pipe(
+      tap((data) => {
+        if (data > 3) {
+          subscription.unsubscribe();
+        }
+      }),
+    )
+    .subscribe(theObserver);
+  }
   /**
    * 
    */
