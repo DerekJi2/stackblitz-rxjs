@@ -12,11 +12,13 @@ export class Chapter2 {
     const onSubscribe = observer => {
       let data = 1;
       const interval = setInterval(() => {
+        console.log('interval: #', data);
         observer.next(data++);
       }, 1000);
       return {
         unsubscribe: () => {
-          clearInterval(interval);
+          // clearInterval(interval);
+          console.log('unsubscribe!!!');
         }
       };
     };
